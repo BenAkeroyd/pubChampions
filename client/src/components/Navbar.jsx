@@ -1,15 +1,26 @@
 'use client';
-import { Menu, User, X} from "lucide-react";
+import { CircleGauge, Menu, User, X} from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar(){
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
     const isHomePage = pathname === "/";
+    const { user, loading } = useAuth();
+    const isLoggedIn = !!user;
+
+    const buttonIcon = isLoggedIn ? <CircleGauge /> : <User />;
+    const buttonLabel = isLoggedIn ? "Dashboard" : "Sign In";
+    const buttonRoute = isLoggedIn ? "/dashboard" : "/login";
+
+    // change colours when logged in
+    const buttonStyle = isLoggedIn
+    ? "from-cyan-500 to-blue-500 hover:brightness-110"
+    : "from-blue-600 to-blue-400";
     return (
         <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-slate-950/20 backdrop-blur-sm ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,35 +54,42 @@ export default function Navbar(){
                                 <a href="#testimonials" className="text-gray-300 hover:text-white text-small lg:text-base">
                                 Testimonials
                                 </a>
-                            <button onClick={() => router.push("/login")} className="group w-full sm:w-auto px-2 sm:px-4 py-1.5 sm:py-3 bg-gradient-to-b from-blue-600 to-blue-400 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-102 flex items-center justify-center space-x-2 cursor-pointer">
-                                <User />
-                                <div>Sign In</div>
-                            </button>
+                                {!loading && (
+                                <button
+                                    onClick={() => router.push(buttonRoute)}
+                                    className={`group w-full sm:w-auto px-2 sm:px-4 py-1.5 sm:py-3 bg-gradient-to-b ${buttonStyle} rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-102 flex items-center justify-center space-x-2 cursor-pointer`}
+                                >
+                                    {buttonIcon}
+                                    <div>{buttonLabel}</div>
+                                </button>
+                                )}
                         </div>
                     </>
                         )}
                      {isHomePage && (
                         <>
                     <div className="flex items-center space-x-2 md:hidden">
-                        <button
-                            onClick={() => router.push("/login")}
-                            className="px-3 py-1.5 bg-gradient-to-b from-blue-600 to-blue-400 rounded-lg text-xs font-semibold flex items-center space-x-1"
-                        >
-                            <User className="w-4 h-4" />
-                            <span>Sign In</span>
-                        </button>
+                        {!loading && (
+                            <button
+                                onClick={() => router.push(buttonRoute)}
+                                className={`px-3 py-1.5 bg-gradient-to-b ${buttonStyle} rounded-lg text-xs font-semibold flex items-center space-x-1`}
+                            >
+                                {buttonIcon}
+                                <span>{buttonLabel}</span>
+                            </button>
+                            )}
 
                         <button
                             className="p-2 text-gray-300 hover:text-white"
                             onClick={() => setMobileMenuIsOpen(prev => !prev)}
                         >
                             {mobileMenuIsOpen ? (
-                                <X className="w-5 h-5" />
+                            <X className="w-5 h-5" />
                             ) : (
-                                <Menu className="w-5 h-5" />
+                            <Menu className="w-5 h-5" />
                             )}
                         </button>
-                    </div>
+                        </div>
                     </>
                         )}
                 </div>

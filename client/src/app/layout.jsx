@@ -1,5 +1,6 @@
 import "./globals.css";
 import ClientShell from "./ClientShell";
+import { AuthProvider } from "../context/AuthContext";
 
 export const metadata = {
   title: "PubChampions",
@@ -8,9 +9,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        <ClientShell>{children}</ClientShell>
+    <html>
+      <body>
+        <AuthProvider>
+          <ClientShell>{children}</ClientShell>
+        </AuthProvider>
       </body>
     </html>
   );
