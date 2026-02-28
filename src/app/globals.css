@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+
+/* General UI Amendments */
+html {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove autofill white background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: white;
+}
+
+@layer utilities {
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .slide-in-from-top {
+    animation-name: slideInFromTop;
+  }
+
+  .slide-in-from-bottom {
+    animation-name: slideInFromBottom;
+  }
+
+  .duration-300 {
+    animation-duration: 300ms;
+  }
+
+  .duration-700 {
+    animation-duration: 700ms;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
