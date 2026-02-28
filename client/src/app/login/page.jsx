@@ -79,7 +79,7 @@ export default function Login() {
       <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
-      <div className="w-full flex flex-col items-center justify-center mb-8 sm:mb-15 animate-in fade-in slide-in-from-top duration-700">
+      <div className="w-full flex flex-col items-center justify-center mb-8 sm:mb-16 animate-in fade-in slide-in-from-top duration-700">
         <Link href="/" className="flex items-center gap-3 group">
           <img
             src="/logo1.png"
@@ -156,18 +156,64 @@ export default function Login() {
                 {loading ? "Logging in..." : "Log In"}
               </button>
 
-              <button
-                type="button"
-                className="group w-full px-6 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/10 flex items-center justify-center cursor-pointer"
-                onClick={() => console.log("Forgot password clicked")}
-              >
-                Forgot Password?
-              </button>
+              <span
+                className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent block mb-1 sm:mb-2 cursor-pointer text-sm">Forgot Your Password?</span>
             </div>
           </form>
+          
+        </div>
+      {/* Divider */}
+        <div className="mt-6 flex items-center gap-3">
+          <div className="h-px flex-1 bg-white/15" />
+          <span className="text-xs text-white/60">Or Continue With</span>
+          <div className="h-px flex-1 bg-white/15" />
         </div>
 
-        <div className="w-80 mt-6 mx-auto h-px bg-white/20 animate-in slide-in-from-bottom duration-700 delay-300"></div>
+        {/* Social Icons */}
+        <div className="mt-5 flex items-center justify-center gap-4">
+
+          {/* Google */}
+          <button
+            type="button"
+            className="h-12 w-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-md
+                      hover:bg-white/10 hover:border-white/30 transition flex items-center justify-center cursor-pointer"
+            aria-label="Continue with Google"
+          >
+            <svg width="20" height="20" viewBox="0 0 48 48">
+              <path fill="#FFC107" d="M43.6 20H42V20H24v8h11.3C33.8 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.7-.4-4z"/>
+              <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+              <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.3 0-9.8-3.1-11.3-7.4l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+              <path fill="#1976D2" d="M43.6 20H42V20H24v8h11.3c-.7 2-2.1 3.8-3.9 5l6.2 5.2C37 38.8 44 34 44 24c0-1.3-.1-2.7-.4-4z"/>
+            </svg>
+          </button>
+
+          {/* Apple */}
+          <button
+            type="button"
+            className="h-12 w-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-md
+                      hover:bg-white/10 hover:border-white/30 transition flex items-center justify-center cursor-pointer"
+            aria-label="Continue with Apple"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white" className="opacity-90">
+              <path d="M16.365 1.43c0 1.14-.465 2.228-1.285 3.03-.86.83-2.256 1.47-3.38 1.37-.145-1.1.5-2.27 1.32-3.04.87-.83 2.38-1.43 3.345-1.36zM21.2 17.22c-.61 1.38-.9 2-1.68 3.19-1.08 1.66-2.6 3.73-4.49 3.75-1.68.02-2.11-1.09-4.4-1.08-2.29.01-2.77 1.1-4.45 1.09-1.89-.02-3.33-1.87-4.41-3.53C.46 18.31-.96 13.5 1.21 10.07c1.06-1.68 2.97-2.74 4.75-2.76 1.78-.03 3.46 1.2 4.4 1.2.94 0 2.94-1.48 4.96-1.27.85.04 3.25.34 4.79 2.58-3.97 2.18-3.33 7.9 1.09 9.4z"/>
+            </svg>
+          </button>
+
+          {/* Facebook (optional) */}
+          <button
+            type="button"
+            className="h-12 w-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-md
+                      hover:bg-white/10 hover:border-white/30 transition flex items-center justify-center cursor-pointer"
+            aria-label="Continue with Facebook"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#1877F2">
+              <path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.75-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/>
+            </svg>
+          </button>
+
+        </div>
+
+      
 
         <div className="mt-6 w-full flex flex-row items-center justify-center gap-1 animate-in slide-in-from-bottom duration-700 delay-400">
           <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent block mb-1 sm:mb-2">
@@ -177,7 +223,7 @@ export default function Login() {
             className="bg-gradient-to-b from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent block mb-1 sm:mb-2 cursor-pointer hover:scale-102"
             onClick={() => (window.location.href = "/register")}
           >
-            Create an Account.
+            Create an Account
           </span>
         </div>
       </div>
